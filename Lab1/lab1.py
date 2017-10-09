@@ -19,11 +19,11 @@ Scrieti o functie care calculeaza cate vocale sunt intr-un sir de caractere
 '''
 
 
-def vowelcount(word):
+def vowel_count(word):
     return len(list(filter(lambda x: x in "aeiouAEIOU", word)))
 
 
-print("2. " + str(vowelcount("This is a sentence with 9 vowels.")))
+print("2. " + str(vowel_count("This is a sentence with 9 vowels.")))
 
 '''
 Scrieti o functie care returneaza numarul de cuvinte care exista intr-un string. Cuvintele sunt separate de spatii, semne de punctuatie (, ;, ? ! . )
@@ -57,7 +57,7 @@ Scrieti o functie care converteste in sir de caractere scris UpperCamelCase in l
 '''
 
 
-def isUpper(c):
+def is_upper(c):
     if c.isupper():
         return "_" + c.lower()
     else:
@@ -65,7 +65,7 @@ def isUpper(c):
 
 
 def convert(string):
-    return "".join(map(lambda x: isUpper(x), string))
+    return "".join(map(lambda x: is_upper(x), string))
 
 
 print(convert("UpperCamelCase"))
@@ -79,10 +79,10 @@ si un numar (intreg sau float). Sa se evalueze polinomul respectiv pentru valoar
 def compute(polynomial, value):
     fixed = polynomial.replace("x", "*" + str(value))
     agents = re.findall("[0-9]+|-|\*|\^|\+", fixed)
-    print(agents)
 
 
 compute("21x^2 + 13x^2 - 3", 4)
+
 '''
 Scrieti o functie care sa returneze cel mai mare numar prim dintr-un sir de caractere dat ca parametru 
     sau -1 daca sirul de caractere nu contine nici un numar prim. 
@@ -90,7 +90,7 @@ Ex: input: 'ahsfaisd35biaishai23isisvdshcbsi271cidsbfsd97sidsda'; output: 271
 '''
 
 
-def replacealpha(c, y):
+def replace_alpha(c, y):
     # if current letter is followed by a digit, return a space to distinguish between numbers
     if c.isalpha() and y.isdigit():
         return " "
@@ -102,29 +102,29 @@ def replacealpha(c, y):
         return ""
 
 
-def isPrime(input):
+def is_prime(input):
     return all(map(lambda x: input % x != 0, list(range(2, input / 2))))
 
 
-def biggestprime(input):
+def biggest_prime(input):
     # parsing the list 2 consecutive letters at a time; added " " so it fully parses it
-    removedLetters = map(lambda z, y: replacealpha(z, y), list(input), list(input[1:] + " "))
+    removed_letters = map(lambda z, y: replace_alpha(z, y), list(input), list(input[1:] + " "))
 
     # filtering out the "" elements, and created a string that would look like: " 27 75 271 1"
-    removedEmptyIndexes = "".join(filter(lambda y: not y == "", removedLetters))
+    removed_empty_indexes = "".join(filter(lambda y: not y == "", removed_letters))
 
     # using regexes to filter out the numbers, then removing the empty "" and transforming them into actual ints
-    listOfNumbers = map(lambda x: int(x), filter(lambda x: x != "", re.findall("[0-9]*", removedEmptyIndexes)))
+    list_of_numbers = map(lambda x: int(x), filter(lambda x: x != "", re.findall("[0-9]*", removed_empty_indexes)))
 
     # filtering only the primes
-    result = filter(lambda x: isPrime(x), listOfNumbers)
+    result = filter(lambda x: is_prime(x), list_of_numbers)
 
-    # returning the apropiate result
+    # returning the appropiate result
     if len(result) == 0:
         return -1
     else:
         return max(result)
 
 
-a = biggestprime("ahsfaisd35biaishai23isisvdshcbsicidsbfsd97sidsda271")
+a = biggest_prime("ahsfaisd35biaishai23isisvdshcbsicidsbfsd97sidsda271")
 print(a)
