@@ -14,7 +14,6 @@ def gcd(x, y):
 
 print("1. " + str(gcd(8, 4)))
 
-
 '''
 Scrieti o functie care calculeaza cate vocale sunt intr-un sir de caractere
 '''
@@ -34,8 +33,8 @@ Scrieti o functie care returneaza numarul de cuvinte care exista intr-un string.
 def wordcount(sentence):
     return len(re.findall("[a-zA-Z]+", sentence))
 
-print("3. " + str(wordcount("This, . is  ... a  ,,,sentence .,")))
 
+print("3. " + str(wordcount("This, . is  ... a  ,,,sentence .,")))
 
 '''
 Scrieti o functie care primeste ca parametri doua siruri de caractere 
@@ -52,7 +51,6 @@ def apparitions(s1, s2):
 
 
 print("4. " + str(apparitions("a", "aaab")))
-
 
 '''
 Scrieti o functie care converteste in sir de caractere scris UpperCamelCase in lowercase_with_underscores.
@@ -72,7 +70,6 @@ def convert(string):
 
 print(convert("UpperCamelCase"))
 
-
 '''
 Se da un sir de caractere care reprezinta un polinom (Ex: "3x^3 + 5x^2 - 2x - 5") 
 si un numar (intreg sau float). Sa se evalueze polinomul respectiv pentru valoarea data.
@@ -80,9 +77,11 @@ si un numar (intreg sau float). Sa se evalueze polinomul respectiv pentru valoar
 
 
 def compute(polynomial, value):
-    fixed = re.sub("[1-9]+x", )
+    fixed = re.sub("x", str(value))
+    print(fixed)
 
 
+compute("21x + 13x + 3", 4)
 '''
 Scrieti o functie care sa returneze cel mai mare numar prim dintr-un sir de caractere dat ca parametru 
     sau -1 daca sirul de caractere nu contine nici un numar prim. 
@@ -91,13 +90,13 @@ Ex: input: 'ahsfaisd35biaishai23isisvdshcbsi271cidsbfsd97sidsda'; output: 271
 
 
 def replacealpha(c, y):
-    #if current letter is followed by a digit, return a space to distinguish between numbers
+    # if current letter is followed by a digit, return a space to distinguish between numbers
     if c.isalpha() and y.isdigit():
         return " "
     # if its digit, return it as it is
     elif c.isdigit():
         return c
-    #if its only a letter follow by some other letter, erase it
+    # if its only a letter follow by some other letter, erase it
     elif c.isalpha():
         return ""
 
@@ -107,24 +106,24 @@ def isPrime(input):
 
 
 def biggestprime(input):
-    #parsing the list 2 consecutive letters at a time; added " " so it fully parses it
-    removedLetters = map(lambda z, y:  replacealpha(z, y), list(input), list(input[1:] + " "))
+    # parsing the list 2 consecutive letters at a time; added " " so it fully parses it
+    removedLetters = map(lambda z, y: replacealpha(z, y), list(input), list(input[1:] + " "))
 
-    #filtering out the "" elements, and created a string that would look like: " 27 75 271 1"
+    # filtering out the "" elements, and created a string that would look like: " 27 75 271 1"
     removedEmptyIndexes = "".join(filter(lambda y: not y == "", removedLetters))
 
-    #using regexes to filter out the numbers, then removing the empty "" and transforming them into actual ints
-    listOfNumbers = map(lambda x: int(x), filter(lambda x: x!= "", re.findall("[0-9]*", removedEmptyIndexes)))
+    # using regexes to filter out the numbers, then removing the empty "" and transforming them into actual ints
+    listOfNumbers = map(lambda x: int(x), filter(lambda x: x != "", re.findall("[0-9]*", removedEmptyIndexes)))
 
-    #filtering only the primes
+    # filtering only the primes
     result = filter(lambda x: isPrime(x), listOfNumbers)
 
-    #returning the apropiate result
+    # returning the apropiate result
     if len(result) == 0:
         return -1
     else:
         return max(result)
 
+
 a = biggestprime("ahsfaisd35biaishai23isisvdshcbsicidsbfsd97sidsda271")
 print(a)
-
