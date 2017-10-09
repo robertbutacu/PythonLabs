@@ -91,11 +91,13 @@ Ex: input: 'ahsfaisd35biaishai23isisvdshcbsi271cidsbfsd97sidsda'; output: 271
 
 
 def replacealpha(c, y):
+    #if current letter is followed by a digit, return a space to distinguish between numbers
     if c.isalpha() and y.isdigit():
-        print(c + "  " + y)
         return " "
+    # if its digit, return it as it is
     elif c.isdigit():
         return c
+    #if its only a letter follow by some other letter, erase it
     elif c.isalpha():
         return ""
 
@@ -105,14 +107,19 @@ def isPrime(input):
 
 
 def biggestprime(input):
+    #parsing the list 2 consecutive letters at a time; added " " so it fully parses it
     removedLetters = map(lambda z, y:  replacealpha(z, y), list(input), list(input[1:] + " "))
 
+    #filtering out the "" elements, and created a string that would look like: " 27 75 271 1"
     removedEmptyIndexes = "".join(filter(lambda y: not y == "", removedLetters))
 
+    #using regexes to filter out the numbers, then removing the empty "" and transforming them into actual ints
     listOfNumbers = map(lambda x: int(x), filter(lambda x: x!= "", re.findall("[0-9]*", removedEmptyIndexes)))
 
+    #filtering only the primes
     result = filter(lambda x: isPrime(x), listOfNumbers)
 
+    #returning the apropiate result
     if len(result) == 0:
         return -1
     else:
