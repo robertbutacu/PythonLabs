@@ -77,7 +77,7 @@ si un numar (intreg sau float). Sa se evalueze polinomul respectiv pentru valoar
 
 
 def compute(polynomial, value):
-    fixed = re.sub("x", str(value))
+    fixed = polynomial.replace("x", "*" + str(value))
     print(fixed)
 
 
