@@ -81,7 +81,7 @@ def compute(polynomial, value):
     print(fixed)
 
 
-compute("21x + 13x + 3", 4)
+compute("21x^2 + 13x^2 + 3", 4)
 '''
 Scrieti o functie care sa returneze cel mai mare numar prim dintr-un sir de caractere dat ca parametru 
     sau -1 daca sirul de caractere nu contine nici un numar prim. 
