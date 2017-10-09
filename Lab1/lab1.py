@@ -81,3 +81,43 @@ si un numar (intreg sau float). Sa se evalueze polinomul respectiv pentru valoar
 
 def compute(polynomial, value):
     fixed = re.sub("[1-9]+x", )
+
+
+'''
+Scrieti o functie care sa returneze cel mai mare numar prim dintr-un sir de caractere dat ca parametru 
+    sau -1 daca sirul de caractere nu contine nici un numar prim. 
+Ex: input: 'ahsfaisd35biaishai23isisvdshcbsi271cidsbfsd97sidsda'; output: 271
+'''
+
+
+def replacealpha(c, y):
+    if c.isalpha() and y.isdigit():
+        print(c + "  " + y)
+        return " "
+    elif c.isdigit():
+        return c
+    elif c.isalpha():
+        return ""
+
+
+def isPrime(input):
+    return all(map(lambda x: input % x != 0, list(range(2, input / 2))))
+
+
+def biggestprime(input):
+    removedLetters = map(lambda z, y:  replacealpha(z, y), list(input), list(input[1:] + " "))
+
+    removedEmptyIndexes = "".join(filter(lambda y: not y == "", removedLetters))
+
+    listOfNumbers = map(lambda x: int(x), filter(lambda x: x!= "", re.findall("[0-9]*", removedEmptyIndexes)))
+
+    result = filter(lambda x: isPrime(x), listOfNumbers)
+
+    if len(result) == 0:
+        return -1
+    else:
+        return max(result)
+
+a = biggestprime("ahsfaisd35biaishai23isisvdshcbsicidsbfsd97sidsda271")
+print(a)
+
