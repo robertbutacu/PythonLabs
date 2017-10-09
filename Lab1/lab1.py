@@ -78,10 +78,11 @@ si un numar (intreg sau float). Sa se evalueze polinomul respectiv pentru valoar
 
 def compute(polynomial, value):
     fixed = polynomial.replace("x", "*" + str(value))
-    print(fixed)
+    agents = re.findall("[0-9]+|-|\*|\^|\+", fixed)
+    print(agents)
 
 
-compute("21x^2 + 13x^2 + 3", 4)
+compute("21x^2 + 13x^2 - 3", 4)
 '''
 Scrieti o functie care sa returneze cel mai mare numar prim dintr-un sir de caractere dat ca parametru 
     sau -1 daca sirul de caractere nu contine nici un numar prim. 
