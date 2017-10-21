@@ -122,4 +122,29 @@ print(ex8([1, 2, 3, 1, 2, 3, 1, 33]))
 si returneaza un dictionar cu urmatoarele operatii dintre toate seturile doua cate doua: 
 reuniune, intersectie, a-b, b-a.
  Cheia va avea urmatoarea forma: "a op b", unde a si b sunt doua seturi, iar op este operatorul aplicat: |, &, -. 
+{
+    "{1, 2} | {2, 3}": 3,
+    "{1, 2} & {2, 3}": 1,
+    "{1, 2} - {2, 3}": 1,
+    ...
+}
 '''
+
+
+def ex9(*args):
+    result = dict()
+
+    for a in args:
+        for b in args:
+            if not a == b:
+                result[str(a) + " | " + str(b)] = a + b
+                result[str(a) + " & " + str(b)] = set(a + b)
+                result[str(a) + " - " + str(b)] = set(a) ^ set(b)
+                result[str(b) + " - " + str(a)] = set(b) ^ set(a)
+
+    return result
+
+
+dictionary = ex9((1, 23), (1, 1, 1), (2312, 1231, 123))
+for a in dictionary:
+    print(str(a) + " : " + str(dictionary[a]) + " \n")
