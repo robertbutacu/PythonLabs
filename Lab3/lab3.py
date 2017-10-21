@@ -87,3 +87,29 @@ print(validate_dict([("key1", "", "inside", ""), ("key2", "start", "middle", "wi
                     {"key2": "starting the engine in the middle of the winter",
                      "key1": "come inside, it's too cold outside", "key3": "this is not valid"}
                     ))
+
+'''
+6. Fie un dictionar global
+{    
+    "+": lambda a, b: a + b,     
+    "*": lambda a, b: a * b,
+    "/": lambda a, b: a / b,
+    "%": lambda a, b: a % b
+}
+ Sa se construiasca o functie apply_operator(operator, a, b) 
+ 'care va aplica peste a si b regula specificata de dictionarul global.
+  Sa se implementeze astfel incat, in cazul adaugarii unui operator nou, sa nu fie necesara modificarea functiei. 
+'''
+
+'''
+8. Sa se scrie o functie care primeste ca parametru o lista 
+si returneaza un tuplu (a, b), a reprezentand numarul de elemente unice din set iar b reprezentand numarul de elemente duplicate din set.
+'''
+
+
+'''
+9. Sa se scrie o functie care primeste un numar variabil de seturi 
+si returneaza un dictionar cu urmatoarele operatii dintre toate seturile doua cate doua: 
+reuniune, intersectie, a-b, b-a.
+ Cheia va avea urmatoarea forma: "a op b", unde a si b sunt doua seturi, iar op este operatorul aplicat: |, &, -. 
+'''
