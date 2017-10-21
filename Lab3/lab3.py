@@ -36,7 +36,7 @@ def ex2(i):
     return go(i, {})
 
 
-print(ex2("Ana are mere"))
+print("Ex 2: " + str(ex2("Ana are mere")) + "\n\n")
 
 '''
 5. Fie functia validate_dict care primeste ca parametru un set de tuple
@@ -55,22 +55,19 @@ si dictionarul
 
 def validate_dict(rules, dictionary):
     def create_regex(*k):
-        print(r'{0}'.format(".".join(k)))
-        return r'{0}'.format(" * ".join(k))
+        regex = re.compile("(.)+".join(k))
+        return regex
 
     def is_regex_valid(regex, string):
-        print(regex + " " + string + "\n")
-        compiled = re.compile(regex)
-        return re.search(compiled, string) is not None
+        return re.search(regex, string) is not None
 
     def is_valid(rules, pair):
-        valid = False
+        valid = True
 
         for rule in rules:
-            # print(str(pair) + " " + str(rule) + "\n")
             if rule[0] == pair[0]:
-                if is_regex_valid(create_regex(rule[1], rule[2], rule[3]), pair[1]):
-                    valid = True
+                if not is_regex_valid(create_regex(rule[1], rule[2], rule[3]), pair[1]):
+                    valid = False
 
         return valid
 
@@ -81,10 +78,10 @@ def validate_dict(rules, dictionary):
     return True
 
 
-print(validate_dict([("key1", "", "inside", ""), ("key2", "start", "middle", "winter")],
+print("Ex 5: " + str(validate_dict([("key1", "", "inside", ""), ("key2", "start", "middle", "winter")],
                     {"key2": "starting the engine in the middle of the winter",
                      "key1": "come inside, it's too cold outside", "key3": "this is not valid"}
-                    ))
+                    )) + "\n\n")
 
 '''
 6. Fie un dictionar global
@@ -115,7 +112,7 @@ def ex8(inputt):
     return unique, duplicates
 
 
-print(ex8([1, 2, 3, 1, 2, 3, 1, 33]))
+print("Ex 8: " + str(ex8([1, 2, 3, 1, 2, 3, 1, 33])) + "\n\n")
 
 '''
 9. Sa se scrie o functie care primeste un numar variabil de seturi 
@@ -145,6 +142,7 @@ def ex9(*args):
     return result
 
 
+print("Ex9: \n" )
 dictionary = ex9((1, 23), (1, 1, 1), (2312, 1231, 123))
 for a in dictionary:
     print(str(a) + " : " + str(dictionary[a]) + " \n")
