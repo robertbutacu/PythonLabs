@@ -1,6 +1,5 @@
 import re
 
-
 '''1. Sa se scrie o functie care primeste ca parametri doua liste a si b
     si returneaza un tuplu de seturi care sa contina: (a intersectat cu b, a reunit cu b, a - b, b - a)
 '''
@@ -39,7 +38,6 @@ def ex2(i):
 
 print(ex2("Ana are mere"))
 
-
 '''
 5. Fie functia validate_dict care primeste ca parametru un set de tuple
  care reprezinta reguli de validare pentru un dictionar 
@@ -69,7 +67,7 @@ def validate_dict(rules, dictionary):
         valid = False
 
         for rule in rules:
-            #print(str(pair) + " " + str(rule) + "\n")
+            # print(str(pair) + " " + str(rule) + "\n")
             if rule[0] == pair[0]:
                 if is_regex_valid(create_regex(rule[1], rule[2], rule[3]), pair[1]):
                     valid = True
@@ -106,6 +104,18 @@ print(validate_dict([("key1", "", "inside", ""), ("key2", "start", "middle", "wi
 si returneaza un tuplu (a, b), a reprezentand numarul de elemente unice din set iar b reprezentand numarul de elemente duplicate din set.
 '''
 
+
+def ex8(inputt):
+    count = list(map(lambda x: inputt.count(x), inputt))
+    zipper = set(zip(inputt, count))
+
+    unique = list(filter(lambda x: x[1] == 1, zipper))
+    duplicates = list(filter(lambda x: x[1] == 2, zipper))
+
+    return unique, duplicates
+
+
+print(ex8([1, 2, 3, 1, 2, 3, 1, 33]))
 
 '''
 9. Sa se scrie o functie care primeste un numar variabil de seturi 
