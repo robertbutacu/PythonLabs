@@ -19,8 +19,9 @@ def ops(a, b):
     except ArithmeticError as e:
         print("Error computing!")
 
-
+print("1. ")
 ops(3, 0)
+print("\n\n")
 
 
 '''
@@ -48,4 +49,35 @@ def printInfo(path):
         print(e)
 
 
+print("2. ")
 printInfo("E:\\Downloadsad")
+print("\n\n")
+
+
+
+'''
+3. Scrieti o functie care primeste ca parametru un nume de fisier. 
+Aceasta va scrie in fisier datele din os.environ, fiecare linie continand cate o intrare din acest dictionar, 
+sub forma cheie [tab] valoare.
+'''
+
+
+def environ(path):
+    try:
+        if not os.path.isfile(path):
+            raise IOError("Proper file please")
+
+        with open(path, "w") as f:
+            zipped = zip(os.environ.keys(), os.environ.values())
+            output = list(map(lambda x: str(x[0]) + "   " + str(x[1]), zipped))
+            for line in output:
+                f.write(line + "\n")
+    except IOError as e:
+        print(e)
+    except Exception as e:
+        print(e)
+
+
+print("3. ")
+environ("E:\\test.txt")
+print("\n\n")
