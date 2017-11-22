@@ -19,5 +19,6 @@ def timer(a, b):
         mins = (current - start) // 60 + round((current - start) % 60 / 100, 2)
         print(mins)
 
+
 print("Ex 1.")
 timer(1, 2)
