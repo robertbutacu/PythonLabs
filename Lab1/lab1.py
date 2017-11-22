@@ -90,6 +90,7 @@ def compute(polynomial, value):
     for i in range(0, len(agents[1::2])):
         print(nums[i] + " " + ops[i] + " " + nums[i + 1])
 
+
 compute("21x^2 + 13x^2 + 3x - 3", 4)
 
 '''

@@ -24,10 +24,10 @@ def ops(a, b):
     except ArithmeticError as e:
         print("Error computing!")
 
+
 print("1. ")
 ops(3, 0)
 print("\n\n")
-
 
 '''
 2. Scrieti un script care primeste ca parametru de la linia de comanda un path si
@@ -58,8 +58,6 @@ print("2. ")
 print_Info("E:\\Downloadsad")
 print("\n\n")
 
-
-
 '''
 3. Scrieti o functie care primeste ca parametru un nume de fisier. 
 Aceasta va scrie in fisier datele din os.environ, fiecare linie continand cate o intrare din acest dictionar, 
@@ -86,7 +84,6 @@ def environ(path):
 print("3. ")
 environ("E:\\test.txt")
 print("\n\n")
-
 
 '''
 9. Sa se creeze un script care afiseaza urmatoarele informatii despre sistem: 

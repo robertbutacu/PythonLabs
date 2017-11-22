@@ -79,9 +79,9 @@ def validate_dict(rules, dictionary):
 
 
 print("Ex 5: " + str(validate_dict([("key1", "", "inside", ""), ("key2", "start", "middle", "winter")],
-                    {"key2": "starting the engine in the middle of the winter",
-                     "key1": "come inside, it's too cold outside", "key3": "this is not valid"}
-                    )) + "\n\n")
+                                   {"key2": "starting the engine in the middle of the winter",
+                                    "key1": "come inside, it's too cold outside", "key3": "this is not valid"}
+                                   )) + "\n\n")
 
 '''
 6. Fie un dictionar global
@@ -142,7 +142,7 @@ def ex9(*args):
     return result
 
 
-print("Ex9: \n" )
+print("Ex9: \n")
 dictionary = ex9((1, 23), (1, 1, 1), (2312, 1231, 123))
 for a in dictionary:
     print(str(a) + " : " + str(dictionary[a]) + " \n")
