@@ -1,3 +1,6 @@
+import timeit
+from os import listdir
+from os.path import isfile, join
 '''
 1. Scrieti un program care la fiecare x secunde unde x va fi aleator ales la fiecare iteratie (din intervalul [a, b] ,
 unde a, b sunt date ca argumente) afiseaza de cate minute ruleaza programul (in minute, cu doua zecimale).
@@ -21,14 +24,49 @@ def timer(a, b):
 
 
 print("Ex 1.")
-timer(1, 2)
-
+#timer(1, 2)
+print("\n\n\n")
 
 '''
 2. Scrieti doua functii de verificare daca un numar este prim, 
 si verificati care dintre ele este mai eficienta din punct de vedere al timpului.
 '''
 
+
+def is_prime1(x):
+    def go():
+        for i in range(2, int(x / 2)):
+            if x % i == 0:
+                return False
+
+        print("prime\n")
+        return True
+
+    print(timeit.timeit(go))
+
+
+def is_prime2(x):
+    def go():
+        if x <= 3:
+            return True
+
+        if x % 2 == 0:
+            return False
+        i = 5
+        while i * i <= x:
+            if x % i == 0 or x % (i + 2) == 0:
+                return False
+            i += 6
+
+        print("prime\n")
+        return True
+
+    print(timeit.timeit(go))
+
+
+print("ex 2.")
+is_prime1(12345678912312312331231241235)
+is_prime2(12345678912312312331231241235)
 
 
 '''
@@ -37,6 +75,24 @@ Calea grupurilor de fisiere duplicate vor fi scrise intr-un fisier output.txt.
 '''
 
 
+def duplicates(directory, output_dir):
+    def g():
+        files = [f for f in listdir(directory) if isfile(join(directory, f))]
+
+        print(files)
+        output = ""
+        set_files = set(files)
+
+        for file in set_files:
+            if files.count(file) > 2:
+                output += file
+
+        print(output)
+
+    print(timeit.timeit(g()))
+
+print("ex3.\n")
+duplicates("E:\\books", "E:\\output.txt")
 
 '''
 4. Sa se scrie un script care primeste ca argument un director
