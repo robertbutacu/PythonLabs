@@ -1,6 +1,12 @@
+import datetime
 import timeit
-from os import listdir
-from os.path import isfile, join
+import os
+from os.path import isfile, join, isdir
+import hashlib
+import json
+
+import time
+
 '''
 1. Scrieti un program care la fiecare x secunde unde x va fi aleator ales la fiecare iteratie (din intervalul [a, b] ,
 unde a, b sunt date ca argumente) afiseaza de cate minute ruleaza programul (in minute, cu doua zecimale).
@@ -24,7 +30,7 @@ def timer(a, b):
 
 
 print("Ex 1.")
-#timer(1, 2)
+# timer(1, 2)
 print("\n\n\n")
 
 '''
@@ -68,7 +74,6 @@ print("ex 2.")
 is_prime1(12345678912312312331231241235)
 is_prime2(12345678912312312331231241235)
 
-
 '''
 3. Gasiti toate fisierele duplicate dintr-un director dat ca argument si afisati timpul de rulare. 
 Calea grupurilor de fisiere duplicate vor fi scrise intr-un fisier output.txt. 
@@ -77,9 +82,7 @@ Calea grupurilor de fisiere duplicate vor fi scrise intr-un fisier output.txt.
 
 def duplicates(directory, output_dir):
     def g():
-        files = [f for f in listdir(directory) if isfile(join(directory, f))]
-
-        print(files)
+        files = [f for f in os.listdir(directory) if isfile(join(directory, f))]
         output = ""
         set_files = set(files)
 
@@ -87,12 +90,11 @@ def duplicates(directory, output_dir):
             if files.count(file) > 2:
                 output += file
 
-        print(output)
+    print(timeit.timeit(lambda: g()))
 
-    print(timeit.timeit(g()))
 
 print("ex3.\n")
-duplicates("E:\\books", "E:\\output.txt")
+# duplicates("E:\\books", "E:\\output.txt")
 
 '''
 4. Sa se scrie un script care primeste ca argument un director
@@ -107,6 +109,54 @@ duplicates("E:\\books", "E:\\output.txt")
 '''
 
 
+def describe(dir):
+    def hash(file, mode):
+        def go(m, file):
+            f = open(os.path.join(dir, file), "rb")
+            while True:
+                data = f.read(4096)
+                if len(data) == 0:
+                    break
+            m.update(data)
+            f.close()
+            return m.hexdigest()
+
+        if mode == "sha256":
+            m = hashlib.sha1()
+
+            return go(m, file)
+        if mode == "md5":
+            m = hashlib.md5()
+
+            return go(m, file)
+
+    if not isdir(dir):
+        raise ValueError("Not a dir!")
+
+    description = {}
+
+    files = [f for f in os.listdir(dir) if isfile(join(dir, f))]
+    i = 0
+    for file in files:
+        file_description = {"nume_fisier": file,
+                            "md5_fisier": hash(file, "md5"),
+                            "sha256": hash(file, "sha256"),
+                            "file_size": os.stat(os.path.join(dir, file)).st_size,
+                            "creation_date":
+                                datetime.datetime.fromtimestamp(
+                                    os.path.getctime(os.path.join(dir, file))
+                                ).strftime('%Y-%m-%d %H:%M:%S'),
+                            "full_path": os.path.join(dir, file)}
+
+        description[f"item {i}"] = file_description
+        i += 1
+
+    jsons = json.dumps(description)
+    open("serialization.json", "wt").write(jsons)
+
+
+print("ex4.\n")
+describe("E:\\books")
 
 '''
 5. Sa se creeze doua scripturi care sa comunice intre ele prin date serializate. 
@@ -115,13 +165,10 @@ iar al doilea script va adauga intr-o arhiva toate fisierele cu size mai mic de 
  si modificate cu cel mult 5 minute in urma (nu va fi adaugat acelasi fisier de 2 ori).
 '''
 
-
-
 '''
 6. Sa se scrie un script care afiseaza in ce zi a saptamanii este anul nou, 
 pentru ultimii x ani (x este dat ca argument).
 '''
-
 
 '''
 7. Sa se simuleze extragerea 6/49. 
