@@ -1,4 +1,5 @@
 import datetime
+import random
 import timeit
 import os
 from os.path import isfile, join, isdir
@@ -183,9 +184,22 @@ def new_years_days(x):
 
 
 print("ex 6.\n")
-new_years_days(10)
+#new_years_days(10)
 
 
 '''
 7. Sa se simuleze extragerea 6/49. 
 '''
+
+
+def lotto():
+    picked = []
+    while len(picked) < 6:
+        r = random.randrange(0, 49)
+        if r not in picked:
+            print(r)
+            picked.append(r)
+
+
+print("ex 7. \n")
+lotto()
