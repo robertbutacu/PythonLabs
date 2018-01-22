@@ -94,7 +94,7 @@ def duplicates(directory, output_dir):
 
 
 print("ex3.\n")
-# duplicates("E:\\books", "E:\\output.txt")
+#duplicates("E:\\books", "E:\\output.txt")
 
 '''
 4. Sa se scrie un script care primeste ca argument un director
@@ -156,7 +156,7 @@ def describe(dir):
 
 
 print("ex4.\n")
-describe("E:\\books")
+#describe("E:\\books")
 
 '''
 5. Sa se creeze doua scripturi care sa comunice intre ele prin date serializate. 
@@ -165,10 +165,26 @@ iar al doilea script va adauga intr-o arhiva toate fisierele cu size mai mic de 
  si modificate cu cel mult 5 minute in urma (nu va fi adaugat acelasi fisier de 2 ori).
 '''
 
+
+
 '''
 6. Sa se scrie un script care afiseaza in ce zi a saptamanii este anul nou, 
 pentru ultimii x ani (x este dat ca argument).
 '''
+
+
+def new_years_days(x):
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    curr_year = datetime.datetime.today().year
+    while x > 0:
+        print(f"{curr_year} : {days[datetime.datetime(curr_year, 1, 1).weekday()]}")
+        curr_year -= 1
+        x -= 1
+
+
+print("ex 6.\n")
+new_years_days(10)
+
 
 '''
 7. Sa se simuleze extragerea 6/49. 
